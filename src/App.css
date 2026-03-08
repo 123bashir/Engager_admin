@@ -1,0 +1,46 @@
+/* Layout using Flexbox */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 16px;
+}
+
+.header, .footer {
+    background: #333;
+    color: #fff;
+    padding: 16px;
+    text-align: center;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    margin-top: 16px;
+    margin-left: 250px; /* Match your .sidebar width */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        gap: 16px;
+        margin-left: 0;
+    }
+    .app-container {
+        padding: 8px;
+    }
+    .header, .footer {
+        padding: 8px;
+    }
+}
+
+/* On mobile, remove the margin so sidebar overlays */
+@media (max-width: 600px) {
+    .main-content {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,344 @@
+/* ========================================
+   MODERN HEADER - CLEAN & PROFESSIONAL
+   ======================================== */
+
+.modern-header {
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  max-width: 100%;
+}
+
+/* ========================================
+   LEFT SECTION - Title & Breadcrumb
+   ======================================== */
+
+.header-left {
+  flex: 1;
+}
+
+.header-page-title {
+  margin: 0 0 6px 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1a202c;
+  letter-spacing: -0.5px;
+}
+
+.header-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+.breadcrumb-icon {
+  font-size: 0.9rem;
+  color: #a0aec0;
+}
+
+.breadcrumb-separator {
+  font-size: 0.7rem;
+  color: #cbd5e1;
+}
+
+.breadcrumb-text {
+  color: #718096;
+  font-weight: 500;
+}
+
+.breadcrumb-current {
+  color: #667eea;
+  font-weight: 700;
+}
+
+/* ========================================
+   RIGHT SECTION - Notifications & User
+   ======================================== */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icon Button (Notifications) */
+.header-icon-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.2rem;
+  color: #718096;
+}
+
+.header-icon-btn:hover {
+  background: #edf2f7;
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* User Menu */
+.header-user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px 8px 8px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-user-menu:hover {
+  background: #edf2f7;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.header-user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: white;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.header-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-user-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a202c;
+  line-height: 1.2;
+}
+
+.header-user-role {
+  font-size: 0.75rem;
+  color: #718096;
+  text-transform: capitalize;
+}
+
+.header-dropdown-icon {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  transition: transform 0.3s ease;
+}
+
+.header-dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  padding: 8px;
+  animation: dropdownSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a5568;
+  transition: all 0.2s ease;
+}
+
+.header-dropdown-item svg {
+  font-size: 1.1rem;
+  color: #718096;
+}
+
+.header-dropdown-item:hover {
+  background: #f7fafc;
+  color: #667eea;
+}
+
+.header-dropdown-item:hover svg {
+  color: #667eea;
+}
+
+.header-dropdown-item.logout {
+  color: #e53e3e;
+}
+
+.header-dropdown-item.logout:hover {
+  background: #fff5f5;
+  color: #c53030;
+}
+
+.header-dropdown-item.logout svg {
+  color: #fc8181;
+}
+
+.header-dropdown-item.logout:hover svg {
+  color: #c53030;
+}
+
+.header-dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 6px 0;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 14px 20px 14px 80px;
+  }
+
+  .header-page-title {
+    font-size: 1.3rem;
+  }
+
+  .header-breadcrumb {
+    font-size: 0.75rem;
+  }
+
+  .header-user-info {
+    display: none;
+  }
+
+  .header-user-menu {
+    padding: 8px;
+  }
+
+  .header-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 12px 14px 12px 70px;
+  }
+
+  .header-page-title {
+    font-size: 1rem;
+  }
+
+  .header-breadcrumb {
+    display: none;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .header-icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .header-user-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+
+  .header-dropdown-menu {
+    right: -10px;
+    min-width: 180px;
+  }
+}

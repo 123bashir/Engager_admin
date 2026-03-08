@@ -1,0 +1,256 @@
+/* ===========================
+   404 NOT FOUND PAGE
+   =========================== */
+
+.notfound-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.notfound-content {
+    background: #fff;
+    border-radius: 24px;
+    padding: 60px 40px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Icon Wrapper */
+.notfound-icon-wrapper {
+    margin-bottom: 24px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.notfound-icon {
+    font-size: 5rem;
+    color: #ff6b6b;
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 107, 0.3));
+}
+
+/* Typography */
+.notfound-title {
+    font-size: 6rem;
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.notfound-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.notfound-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0 0 40px 0;
+    line-height: 1.6;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Action Buttons */
+.notfound-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.notfound-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.notfound-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.notfound-btn:active {
+    transform: translateY(0);
+}
+
+.notfound-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+}
+
+.notfound-btn-primary:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #65408a 100%);
+}
+
+.notfound-btn-secondary {
+    background: #fff;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.notfound-btn-secondary:hover {
+    background: #667eea;
+    color: #fff;
+}
+
+.notfound-btn i {
+    font-size: 1.2rem;
+}
+
+/* Decorative Icons */
+.notfound-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    opacity: 0.15;
+    margin-top: 20px;
+}
+
+.decoration-icon {
+    font-size: 2.5rem;
+    color: #667eea;
+    animation: float 3s ease-in-out infinite;
+}
+
+.decoration-icon:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.decoration-icon:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.decoration-icon:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .notfound-content {
+        padding: 50px 30px;
+    }
+
+    .notfound-title {
+        font-size: 5rem;
+    }
+
+    .notfound-subtitle {
+        font-size: 1.6rem;
+    }
+
+    .notfound-text {
+        font-size: 1rem;
+    }
+
+    .notfound-icon {
+        font-size: 4rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .notfound-content {
+        padding: 40px 20px;
+    }
+
+    .notfound-title {
+        font-size: 4rem;
+    }
+
+    .notfound-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .notfound-text {
+        font-size: 0.95rem;
+    }
+
+    .notfound-icon {
+        font-size: 3rem;
+    }
+
+    .notfound-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .notfound-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .decoration-icon {
+        font-size: 2rem;
+    }
+
+    .notfound-decoration {
+        gap: 20px;
+    }
+}
