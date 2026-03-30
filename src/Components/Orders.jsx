@@ -8,6 +8,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { AuthContext } from "../context/AuthContext";
 import Popup from "./Popup";
+import { API_BASE_URL } from "../utils/api";
 
 export default function Orders() {
   const { currentUser } = useContext(AuthContext);
@@ -42,7 +43,7 @@ export default function Orders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/orders`, {
+        const res = await fetch(`${API_BASE_URL}/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -134,7 +135,7 @@ export default function Orders() {
   const handleVerifyPayment = async (orderId) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/verify-payment`,
+        `${API_BASE_URL}/orders/${orderId}/verify-payment`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -41,9 +41,8 @@ function Login() {
 
   return (
     <div className="login-container">
-      {/* Image section on right in desktop */}
       <div className="login-image-section">
-        <img src="/logo.png" alt="Engager Admin" style={{ width: '200px', marginBottom: '20px' }} />
+        <img src="/nfc.jpg" alt="Engager Admin" />
         <div className="login-info">
           <h2 style={{ color: "#fff", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}>Engager Smart Solutions</h2>
           <p style={{ color: "#fff", fontWeight: "600", textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>Smart NFC Business solutions for modern professionals.</p>

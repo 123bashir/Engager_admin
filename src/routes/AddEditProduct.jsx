@@ -14,6 +14,7 @@ export default function AddEditProduct({ onNavigate, activePage }) {
     const navigate = useNavigate();
     const isEditMode = Boolean(id);
     const fileInputRef = useRef(null);
+    const galleryInputRef = useRef(null);
 
     const [loading, setLoading] = useState(isEditMode);
     const [submitting, setSubmitting] = useState(false);
@@ -28,7 +29,8 @@ export default function AddEditProduct({ onNavigate, activePage }) {
         price: "₦0",
         oldPrice: "₦0",
         image: "/product1.png",
-        image_path: "/product1.png"
+        image_path: "/product1.png",
+        gallery: []
     });
 
     useEffect(() => {
@@ -48,7 +50,8 @@ export default function AddEditProduct({ onNavigate, activePage }) {
                     price: result.price || "₦0",
                     oldPrice: result.oldPrice || "₦0",
                     image: result.image || "/product1.png",
-                    image_path: result.image_path || "/product1.png"
+                    image_path: result.image_path || "/product1.png",
+                    gallery: Array.isArray(result.gallery) ? result.gallery : (typeof result.gallery === 'string' ? JSON.parse(result.gallery) : [])
                 });
             }
         } catch (error) {
@@ -80,13 +83,50 @@ export default function AddEditProduct({ onNavigate, activePage }) {
                     image_path: result.imageUrl,
                     image: result.imageUrl
                 }));
-                notifySuccess('Image uploaded successfully!');
+                notifySuccess('Main image updated!');
             }
         } catch (error) {
             notifyError('Failed to upload image. ' + error.message);
         } finally {
             setUploading(false);
         }
+    };
+
+    const handleGalleryFileSelect = async (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        setUploading(true);
+        try {
+            const uploadPromises = files.map(file => productAPI.uploadImage(file));
+            const results = await Promise.all(uploadPromises);
+            
+            const newImages = results
+                .filter(res => res.success)
+                .map(res => res.imageUrl);
+
+            if (newImages.length > 0) {
+                setFormData(prev => ({
+                    ...prev,
+                    gallery: [...(prev.gallery || []), ...newImages]
+                }));
+                notifySuccess(`${newImages.length} images added to gallery!`);
+            }
+        } catch (error) {
+            notifyError('Failed to upload some gallery images.');
+        } finally {
+            setUploading(false);
+        }
+        
+        // Reset input
+        e.target.value = null;
+    };
+
+    const removeGalleryImage = (indexToRemove) => {
+        setFormData(prev => ({
+            ...prev,
+            gallery: prev.gallery.filter((_, index) => index !== indexToRemove)
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -252,6 +292,61 @@ export default function AddEditProduct({ onNavigate, activePage }) {
                                         />
                                     </div>
                                 )}
+                            </div>
+
+                            <div className="form-group" style={{ marginTop: '40px' }}>
+                                <label>Product Gallery (Multiple Photos)</label>
+                                <p className="form-subtitle" style={{ marginBottom: '15px' }}>
+                                    These photos will be shown in the slider on the product details page.
+                                </p>
+                                
+                                <input
+                                    type="file"
+                                    ref={galleryInputRef}
+                                    onChange={handleGalleryFileSelect}
+                                    accept="image/*"
+                                    multiple
+                                    style={{ display: 'none' }}
+                                />
+                                
+                                <button 
+                                    type="button" 
+                                    className="btn-upload-images"
+                                    onClick={() => galleryInputRef.current.click()}
+                                    disabled={uploading}
+                                >
+                                    <FaCloudUploadAlt /> {uploading ? "Uploading..." : "Add Gallery Photos"}
+                                </button>
+
+                                <div className="images-grid">
+                                    {formData.gallery && formData.gallery.map((img, index) => (
+                                        <div key={index} className="image-preview-item">
+                                            <img src={getImageUrl(img)} alt={`Gallery ${index}`} />
+                                            <button 
+                                                type="button" 
+                                                className="btn-remove-image"
+                                                onClick={() => removeGalleryImage(index)}
+                                                title="Remove Image"
+                                            >
+                                                <FaTrash size={14} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                    
+                                    {(!formData.gallery || formData.gallery.length === 0) && !uploading && (
+                                        <div style={{ 
+                                            gridColumn: '1 / -1', 
+                                            padding: '40px', 
+                                            textAlign: 'center', 
+                                            background: '#f8fafc',
+                                            borderRadius: '12px',
+                                            border: '2px dashed #e2e8f0',
+                                            color: '#94a3b8'
+                                        }}>
+                                            No gallery images added yet.
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
 

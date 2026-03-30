@@ -2,7 +2,7 @@
 
 // ============================================
 
-const API_BASE_URL = 'http://localhost:5000/api';
+export const API_BASE_URL = 'http://localhost:5000/api';
 const BACKEND_URL = 'http://localhost:5000';
 
 // Get auth token from session storage 
